@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <title>Vue JS Coffee Junkes</title>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id='container'>
+        <div id='cover'>
+            <img src="assets/images/com-cj-hero-overview.jpg" class="img-rounded">
+        </div>
+        <div id="app">
+            <section v-if="errored"><p id='interesting-fact'>We are sorry for the error try again later</p></section>
+            <section v-else>
+                <div v-if="loading">Loading...</div>
+                <div v-else v-for="beverage in info" class="beverage">
+                    <table>
+                    <tr>
+                        <td style="width:25%;"><img :src="beverage.image" class="responsive"></td>
+                        <td style="width:25%;">{{beverage.type}}</td>
+                        <td style="width:25%;">( {{beverage.status}} )</td>
+                        <td style="width:25%;"><button type="button" class="btn btn-outline-success" onclick="up();">+</button></td>
+                        <td ><span id="up" style="text-align: center">0</span></td>
+                        <td style="width:25%;"><button type="button" class="btn btn-outline-danger" onclick="down();">-</button></td>
+                        </tr>
+                        </table>
+                        <hr>
+                </div>
+                
+            </section>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            // increase and decrease number of the choosen beverage
+            var g = 0;
+            
+            function up() {
+                    g++;
+                    document.getElementById('up').innerHTML = g;
+            }	
+            // you cant go below zero
+            function down() {
+                if (g > 0) {
+                    g--;
+                    document.getElementById('up').innerHTML = g;
+                }
+            }	
+                
+            </script>
+    </div>
+
